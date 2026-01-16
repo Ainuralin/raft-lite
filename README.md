@@ -37,18 +37,19 @@ curl http://<NODE_PRIVATE_IP>:<PORT>/status #For checking the status of nodes af
 ```bash
 curl -X POST http://<LEADER_PRIVATE_IP>:<PORT>/client_command -H "Content-Type: application/json" -d '{"command":"SET x = 5"}'
 ```
+Check the status:
 
-## Failure Testing
-
-# Leader crash
-# Stop leader (CTRL+C), then check new leader
 ```bash
 curl http://<NODE_PRIVATE_IP>:<PORT>/status #For node A, B and C
 ```
 
-# Follower crash
-# Stop a follower, send command to leader, restart follower
+## Leader crash
+- Stop a leader node
+- Send command to leader
 ```bash
 curl -X POST http://<LEADER_PRIVATE_IP>:<PORT>/client_command -d '{"command":"SET y = 5"}'
+```
+- Check the status
+```bash
 curl http://<RESTARTED_FOLLOWER_IP>:<PORT>/status #For nodes B and C
 ```
